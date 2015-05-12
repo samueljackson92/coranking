@@ -1,9 +1,7 @@
 import unittest
 import nose.tools
 from sklearn import manifold, datasets
-
-from mia.coranking import trustworthiness, continuity, LCMC, coranking_matrix
-from mia.utils import *
+from ..coranking import trustworthiness, continuity, LCMC, coranking_matrix
 
 
 class CorankingTest(unittest.TestCase):
