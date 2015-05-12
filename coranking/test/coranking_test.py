@@ -1,5 +1,6 @@
 import unittest
 import nose.tools
+import numpy as np
 from sklearn import manifold, datasets
 from ..coranking import trustworthiness, continuity, LCMC, coranking_matrix
 
@@ -19,6 +20,33 @@ class CorankingTest(unittest.TestCase):
 
         n, _ = self._high_data.shape
         nose.tools.assert_equal(Q.shape, (n-1, n-1))
+
+    def test_basic_coranking_matrix_no_change(self):
+        high = np.ones((10, 10))
+        low = np.zeros((10, 10))
+        Q = coranking_matrix(high, low)
+
+        n, _ = high.shape
+        nose.tools.assert_equal(Q.shape, (n-1, n-1))
+        nose.tools.assert_equal(Q.sum(), 90)
+        assert_diagonal_equal(Q, np.eye(n-1)*10)
+
+    def test_basic_coranking_matrix_changed(self):
+        high = np.arange(25).reshape(5, 5)
+        low = high.copy()
+        low[[0, 2], :] = high[[2, 0], :]  # swapping a row changes neighbours
+
+        Q = coranking_matrix(high, low)
+
+        n, _ = high.shape
+        nose.tools.assert_equal(Q.shape, (n-1, n-1))
+        nose.tools.assert_equal(Q.sum(), 20)
+        exp_result = np.array([[4,  0,  0,  1],
+                               [0,  2,  2,  1],
+                               [0,  2,  3,  0],
+                               [1,  1,  0,  3]])
+
+        assert_diagonal_equal(Q, exp_result)
 
     def test_trustworthiness(self):
         Q = coranking_matrix(self._high_data, self._low_data)
@@ -40,3 +68,9 @@ class CorankingTest(unittest.TestCase):
         l = LCMC(Q, 5)
         nose.tools.assert_true(isinstance(l, float))
         nose.tools.assert_almost_equal(l, 0.474110925)
+
+
+def assert_diagonal_equal(m, exp_result):
+    """Check the elements on the diagonal of a matrix are equal """
+    di = np.diag_indices(m.shape[0])
+    np.testing.assert_array_equal(m[di], exp_result[di])
