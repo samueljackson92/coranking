@@ -3,8 +3,7 @@ lower dimensional mapping produce by manifold learning algorithms.
 
 Reference:
 
-Lee, John Aldo, and Michel Verleysen. "Rank-based quality assessment of
-nonlinear dimensionality reduction." ESANN. 2008.
+Lee, John A., and Michel Verleysen. "Quality assessment of dimensionality reduction: Rank-based criteria." Neurocomputing 72.7 (2009): 1431-1443.
 """
 
 import itertools
