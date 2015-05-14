@@ -3,7 +3,8 @@ lower dimensional mapping produce by manifold learning algorithms.
 
 Reference:
 
-Lee, John A., and Michel Verleysen. "Quality assessment of dimensionality reduction: Rank-based criteria." Neurocomputing 72.7 (2009): 1431-1443.
+Lee, John A., and Michel Verleysen. "Quality assessment of dimensionality
+reduction: Rank-based criteria." Neurocomputing 72.7 (2009): 1431-1443.
 """
 
 import itertools
@@ -45,6 +46,9 @@ def trustworthiness(Q, K):
     n, _ = Q.shape
     n += 1
 
+    if K >= n or K < 1:
+        raise ValueError("K must be < the size of Q and >= 0.")
+
     # Indicies for the lower left section of Q. Quantifying hard intrusions.
     it = itertools.product(range(K, n-1), range(K))
     summation = sum([(k - K) * Q[k, l] for k, l in it])
@@ -65,6 +69,9 @@ def continuity(Q, K):
     n, _ = Q.shape
     n += 1
 
+    if K >= n or K < 1:
+        raise ValueError("K must be < the size of Q and >= 0.")
+
     # Indicies for the upper right section of Q. Quantifying hard extrustions.
     it = itertools.product(range(K), range(K, n-1))
     summation = sum([(l - K) * Q[k, l] for k, l in it])
@@ -84,7 +91,7 @@ def _tc_normalisation_weight(K, n):
     if K < (n/2):
         return n*K*(2*n - 3*K - 1)
     elif K >= (n/2):
-        return n*(n - K)*(n - K - 1)
+        return n*(n - K)*(n - K)
 
 
 def LCMC(Q, K):
@@ -96,10 +103,13 @@ def LCMC(Q, K):
     :param K: the number of neighbours to use.
     """
 
-    n = Q.shape[0] + 1
+    n = Q.shape[0]
 
-    # Indicies for the upper right section of Q. Quantifying true positives.
+    if K >= n or K < 1:
+        raise ValueError("K must be < the size of Q and >= 0.")
+
+    # Indicies for the upper left section of Q. Quantifying true positives.
     it = itertools.product(range(K), range(K))
     summation = sum([Q[k, l] for k, l in it])
 
-    return (K / (1. - n)) + (1. / (n*k)) * summation
+    return (K / (1. - n)) + (1. / (n*K)) * summation
