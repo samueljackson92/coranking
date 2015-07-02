@@ -105,7 +105,7 @@ def LCMC(Q, K):
 
     n = Q.shape[0]
 
-    if K >= n or K < 1:
+    if K > n or K < 1:
         raise ValueError("K must be < the size of Q and >= 0.")
 
     # Indicies for the upper left section of Q. Quantifying true positives.
