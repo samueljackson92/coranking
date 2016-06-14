@@ -1,5 +1,5 @@
 import numpy as np
-from sklearn.metrics.pairwise import pairwise_distances
+from scipy.spatial import distance
 
 __version__ = "0.1.1"
 
@@ -27,3 +27,5 @@ def coranking_matrix(high_data, low_data):
     return Q
 
 
+def pairwise_distances(X):
+    return distance.squareform(distance.pdist(X))
