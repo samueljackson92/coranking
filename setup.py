@@ -5,10 +5,11 @@ except ImportError:
 
 import numpy as np
 from Cython.Distutils import build_ext
+from Cython.Build import cythonize
 from distutils.core import Extension
 
 # define the extension module
-ext_modules = [Extension("coranking._metrics_cy", ["src/_metrics_cy.pyx"])]
+ext_modules = cythonize([Extension("coranking._metrics_cy", ["src/_metrics_cy.pyx"])])
 import coranking
 
 config = {
@@ -21,7 +22,6 @@ config = {
     'install_requires': [
         'numpy',
         'scipy',
-        'matplotlib',
         'scikit-learn'
     ],
     'include_dirs': [np.get_include()],
