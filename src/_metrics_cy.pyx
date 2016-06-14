@@ -2,6 +2,16 @@ import numpy as np
 cimport numpy as np
 
 def trustworthiness(np.ndarray[np.int64_t, ndim=2] Q, Py_ssize_t K):
+    """ The trustworthiness measure complements continuity and is a measure of
+    the number of hard intrusions.
+
+    Args:
+        Q: the co-ranking matrix to calculate continuity from
+        k (int): the number of neighbours to use.
+
+    Returns:
+        The trustworthiness metric for the given K
+    """
     cdef Py_ssize_t i, j
     cdef Py_ssize_t n = Q.shape[0]
     cdef double summation = 0.0
@@ -16,6 +26,16 @@ def trustworthiness(np.ndarray[np.int64_t, ndim=2] Q, Py_ssize_t K):
     return 1.0 - summation
 
 def continuity(np.ndarray[np.int64_t, ndim=2] Q, Py_ssize_t K):
+    """ The continutiy measure complements trustworthiness and is a measure of
+    the number of hard extrusions.
+
+    Args:
+        Q: the co-ranking matrix to calculate continuity from
+        k (int): the number of neighbours to use.
+
+    Returns:
+        The continuity metric for the given K
+    """
     cdef Py_ssize_t i, j
     cdef Py_ssize_t n = Q.shape[0]
     cdef double summation = 0.0
@@ -33,8 +53,12 @@ def _tc_normalisation_weight(K, n):
     """ Compute the normalisation weight for the trustworthiness and continuity
     measures.
 
-    :param K: size of the neighbourhood.
-    :param n: total size of matrix.
+    Args:
+        K (int): size of the neighbourhood
+        n (int): total size of the matrix
+
+    Returns:
+        Normalisation weight for trustworthiness and continuity metrics
     """
     if K < (n/2):
         return n*K*(2*n - 3*K - 1)
@@ -47,8 +71,12 @@ def LCMC(np.ndarray[np.int64_t, ndim=2] Q, Py_ssize_t K):
     intrusions and extrusions. This can be thought of as a measure of the
     number of true postives.
 
-    :param Q: the co-ranking matrix to calculate continuity from
-    :param K: the number of neighbours to use.
+    Args:
+        Q: the co-ranking matrix to calculate continuity from
+        k (int): the number of neighbours to use.
+
+    Returns:
+        The LCMC metric for the given K
     """
     cdef Py_ssize_t i, j
     cdef Py_ssize_t n = Q.shape[0]
