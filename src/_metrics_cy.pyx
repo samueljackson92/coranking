@@ -3,16 +3,31 @@ cimport numpy as np
 
 def trustworthiness(np.ndarray[np.int64_t, ndim=2] Q, Py_ssize_t K):
     cdef Py_ssize_t i, j
+    cdef Py_ssize_t n = Q.shape[0]
     cdef double summation = 0.0
 
-    cdef double norm_weight = _tc_normalisation_weight(K, Q.shape[0]);
-    cdef double w = 2.0 / norm_weight;
+    cdef double norm_weight = _tc_normalisation_weight(K, n);
+    cdef double w = 2.0 / norm_weight
     
-    for k in range(K, Q.shape[0]):
+    for k in range(K, n):
         for l in range(K):
             summation += w * (k - K) * Q[k, l]
 
-    return 1.0 - summation;
+    return 1.0 - summation
+
+def continuity(np.ndarray[np.int64_t, ndim=2] Q, Py_ssize_t K):
+    cdef Py_ssize_t i, j
+    cdef Py_ssize_t n = Q.shape[0]
+    cdef double summation = 0.0
+
+    cdef double norm_weight = _tc_normalisation_weight(K, n)
+    cdef double w = 2.0 / norm_weight
+    
+    for k in range(K):
+        for l in range(K, n):
+            summation += w * (l - K) * Q[k, l]
+
+    return 1.0 - summation
 
 def _tc_normalisation_weight(K, n):
     """ Compute the normalisation weight for the trustworthiness and continuity
