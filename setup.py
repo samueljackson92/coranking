@@ -21,7 +21,6 @@ config = {
     'install_requires': [
         'numpy',
         'scipy',
-        'matplotlib',
         'scikit-learn'
     ],
     'include_dirs': [np.get_include()],
