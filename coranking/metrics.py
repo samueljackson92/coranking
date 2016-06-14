@@ -1,4 +1,4 @@
-import _metrics_cy as metrics_cy
+import coranking._metrics_cy as metrics_cy
 import numpy as np
 
 
