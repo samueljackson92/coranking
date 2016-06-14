@@ -1,5 +1,5 @@
 from coranking.coranking import coranking_matrix
-from coranking.metrics import trustworthiness, continuity
+from coranking.metrics import trustworthiness, continuity, LCMC
 from nose.tools import *
 import numpy as np
 from sklearn import manifold, datasets
@@ -39,6 +39,24 @@ def test_continuity_array():
 
     Q = coranking_matrix(high_data, low_data)
     result = continuity(Q)
+
+    assert_equal(result.shape, (297, ))
+
+
+def test_LCMC():
+    high_data, low_data = make_datasets()
+
+    Q = coranking_matrix(high_data, low_data)
+    l = LCMC(Q, 5, 6)
+
+    assert_almost_equal(l, 0.377, places=3)
+
+
+def test_LCMC_array():
+    high_data, low_data = make_datasets()
+
+    Q = coranking_matrix(high_data, low_data)
+    result = LCMC(Q)
 
     assert_equal(result.shape, (297, ))
 
