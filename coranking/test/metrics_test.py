@@ -1,4 +1,4 @@
-from coranking.coranking import coranking_matrix
+from coranking import coranking_matrix
 from coranking.metrics import trustworthiness, continuity, LCMC
 from nose.tools import *
 import numpy as np
