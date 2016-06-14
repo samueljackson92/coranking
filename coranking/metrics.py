@@ -3,6 +3,17 @@ import numpy as np
 
 
 def trustworthiness(Q, min_k=1, max_k=None):
+    """Compute the trustwortiness metric over a range of K values.
+
+    Args:
+        Q (array_like): coranking matrix
+        min_k (Optional[int]): the lowest K value to compute. Default 1.
+        max_k (Optional[int]): the highest K value to compute. If None the
+            range of values will be computer from min_k to n-1
+
+    Returns:
+        array of size min_k - max_k with the corresponding trustworthiness values.
+    """
     if not isinstance(Q, np.int64):
         Q = Q.astype(np.int64)
 
