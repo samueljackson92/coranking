@@ -16,7 +16,8 @@ def trustworthiness(np.ndarray[np.int64_t, ndim=2] Q, Py_ssize_t K):
     cdef Py_ssize_t n = Q.shape[0]
     cdef double summation = 0.0
 
-    cdef double norm_weight = _tc_normalisation_weight(K, n);
+    cdef double norm_weight = _tc_normalisation_weight(K, n);  # here we should pass n+1 to _tc_normalisation_weight
+                                                               # because n+1 is the size of samples   
     cdef double w = 2.0 / norm_weight
     
     for k in range(K, n):
