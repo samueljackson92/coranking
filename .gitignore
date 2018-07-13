@@ -89,4 +89,3 @@ include
 
 #Custom ignores
 man/
-src/*.c
