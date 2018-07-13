@@ -1833,25 +1833,25 @@ static PyObject *__pyx_pf_9coranking_11_metrics_cy_trustworthiness(CYTHON_UNUSED
   /* "src/_metrics_cy.pyx":16
  *     """
  *     cdef Py_ssize_t i, j
- *     cdef Py_ssize_t n = Q.shape[0]+1             # <<<<<<<<<<<<<<
+ *     cdef Py_ssize_t n = Q.shape[0]             # <<<<<<<<<<<<<<
  *     cdef double summation = 0.0
  * 
  */
-  __pyx_v_n = ((__pyx_v_Q->dimensions[0]) + 1);
+  __pyx_v_n = (__pyx_v_Q->dimensions[0]);
 
   /* "src/_metrics_cy.pyx":17
  *     cdef Py_ssize_t i, j
- *     cdef Py_ssize_t n = Q.shape[0]+1
+ *     cdef Py_ssize_t n = Q.shape[0]
  *     cdef double summation = 0.0             # <<<<<<<<<<<<<<
  * 
- *     cdef double norm_weight = _tc_normalisation_weight(K, n)
+ *     cdef double norm_weight = _tc_normalisation_weight(K, n+1)
  */
   __pyx_v_summation = 0.0;
 
   /* "src/_metrics_cy.pyx":19
  *     cdef double summation = 0.0
  * 
- *     cdef double norm_weight = _tc_normalisation_weight(K, n)             # <<<<<<<<<<<<<<
+ *     cdef double norm_weight = _tc_normalisation_weight(K, n+1)             # <<<<<<<<<<<<<<
  *     cdef double w = 2.0 / norm_weight
  * 
  */
@@ -1859,7 +1859,7 @@ static PyObject *__pyx_pf_9coranking_11_metrics_cy_trustworthiness(CYTHON_UNUSED
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_K); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 19, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyInt_FromSsize_t(__pyx_v_n); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 19, __pyx_L1_error)
+  __pyx_t_4 = PyInt_FromSsize_t((__pyx_v_n + 1)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 19, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_5 = NULL;
   __pyx_t_6 = 0;
@@ -1916,10 +1916,10 @@ static PyObject *__pyx_pf_9coranking_11_metrics_cy_trustworthiness(CYTHON_UNUSED
 
   /* "src/_metrics_cy.pyx":20
  * 
- *     cdef double norm_weight = _tc_normalisation_weight(K, n)
+ *     cdef double norm_weight = _tc_normalisation_weight(K, n+1)
  *     cdef double w = 2.0 / norm_weight             # <<<<<<<<<<<<<<
  * 
- *     for k in range(K, n-1):
+ *     for k in range(K, n):
  */
   if (unlikely(__pyx_v_norm_weight == 0)) {
     PyErr_SetString(PyExc_ZeroDivisionError, "float division");
@@ -1930,13 +1930,13 @@ static PyObject *__pyx_pf_9coranking_11_metrics_cy_trustworthiness(CYTHON_UNUSED
   /* "src/_metrics_cy.pyx":22
  *     cdef double w = 2.0 / norm_weight
  * 
- *     for k in range(K, n-1):             # <<<<<<<<<<<<<<
+ *     for k in range(K, n):             # <<<<<<<<<<<<<<
  *         for l in range(K):
  *             summation += w * (k+1 - K) * Q[k, l]
  */
   __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_K); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 22, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyInt_FromSsize_t((__pyx_v_n - 1)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 22, __pyx_L1_error)
+  __pyx_t_2 = PyInt_FromSsize_t(__pyx_v_n); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 22, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_7 = PyTuple_New(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 22, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
@@ -1994,7 +1994,7 @@ static PyObject *__pyx_pf_9coranking_11_metrics_cy_trustworthiness(CYTHON_UNUSED
 
     /* "src/_metrics_cy.pyx":23
  * 
- *     for k in range(K, n-1):
+ *     for k in range(K, n):
  *         for l in range(K):             # <<<<<<<<<<<<<<
  *             summation += w * (k+1 - K) * Q[k, l]
  * 
@@ -2005,7 +2005,7 @@ static PyObject *__pyx_pf_9coranking_11_metrics_cy_trustworthiness(CYTHON_UNUSED
       __pyx_v_l = __pyx_t_13;
 
       /* "src/_metrics_cy.pyx":24
- *     for k in range(K, n-1):
+ *     for k in range(K, n):
  *         for l in range(K):
  *             summation += w * (k+1 - K) * Q[k, l]             # <<<<<<<<<<<<<<
  * 
@@ -2056,7 +2056,7 @@ static PyObject *__pyx_pf_9coranking_11_metrics_cy_trustworthiness(CYTHON_UNUSED
     /* "src/_metrics_cy.pyx":22
  *     cdef double w = 2.0 / norm_weight
  * 
- *     for k in range(K, n-1):             # <<<<<<<<<<<<<<
+ *     for k in range(K, n):             # <<<<<<<<<<<<<<
  *         for l in range(K):
  *             summation += w * (k+1 - K) * Q[k, l]
  */
@@ -2225,25 +2225,25 @@ static PyObject *__pyx_pf_9coranking_11_metrics_cy_2continuity(CYTHON_UNUSED PyO
   /* "src/_metrics_cy.pyx":40
  *     """
  *     cdef Py_ssize_t i, j
- *     cdef Py_ssize_t n = Q.shape[0]+1             # <<<<<<<<<<<<<<
+ *     cdef Py_ssize_t n = Q.shape[0]             # <<<<<<<<<<<<<<
  *     cdef double summation = 0.0
  * 
  */
-  __pyx_v_n = ((__pyx_v_Q->dimensions[0]) + 1);
+  __pyx_v_n = (__pyx_v_Q->dimensions[0]);
 
   /* "src/_metrics_cy.pyx":41
  *     cdef Py_ssize_t i, j
- *     cdef Py_ssize_t n = Q.shape[0]+1
+ *     cdef Py_ssize_t n = Q.shape[0]
  *     cdef double summation = 0.0             # <<<<<<<<<<<<<<
  * 
- *     cdef double norm_weight = _tc_normalisation_weight(K, n)
+ *     cdef double norm_weight = _tc_normalisation_weight(K, n+1)
  */
   __pyx_v_summation = 0.0;
 
   /* "src/_metrics_cy.pyx":43
  *     cdef double summation = 0.0
  * 
- *     cdef double norm_weight = _tc_normalisation_weight(K, n)             # <<<<<<<<<<<<<<
+ *     cdef double norm_weight = _tc_normalisation_weight(K, n+1)             # <<<<<<<<<<<<<<
  *     cdef double w = 2.0 / norm_weight
  * 
  */
@@ -2251,7 +2251,7 @@ static PyObject *__pyx_pf_9coranking_11_metrics_cy_2continuity(CYTHON_UNUSED PyO
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_K); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 43, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyInt_FromSsize_t(__pyx_v_n); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 43, __pyx_L1_error)
+  __pyx_t_4 = PyInt_FromSsize_t((__pyx_v_n + 1)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 43, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_5 = NULL;
   __pyx_t_6 = 0;
@@ -2308,7 +2308,7 @@ static PyObject *__pyx_pf_9coranking_11_metrics_cy_2continuity(CYTHON_UNUSED PyO
 
   /* "src/_metrics_cy.pyx":44
  * 
- *     cdef double norm_weight = _tc_normalisation_weight(K, n)
+ *     cdef double norm_weight = _tc_normalisation_weight(K, n+1)
  *     cdef double w = 2.0 / norm_weight             # <<<<<<<<<<<<<<
  * 
  *     for k in range(K):
@@ -2323,7 +2323,7 @@ static PyObject *__pyx_pf_9coranking_11_metrics_cy_2continuity(CYTHON_UNUSED PyO
  *     cdef double w = 2.0 / norm_weight
  * 
  *     for k in range(K):             # <<<<<<<<<<<<<<
- *         for l in range(K, n-1):
+ *         for l in range(K, n):
  *             summation += w * (l+1 - K) * Q[k, l]
  */
   __pyx_t_9 = __pyx_v_K;
@@ -2334,13 +2334,13 @@ static PyObject *__pyx_pf_9coranking_11_metrics_cy_2continuity(CYTHON_UNUSED PyO
     /* "src/_metrics_cy.pyx":47
  * 
  *     for k in range(K):
- *         for l in range(K, n-1):             # <<<<<<<<<<<<<<
+ *         for l in range(K, n):             # <<<<<<<<<<<<<<
  *             summation += w * (l+1 - K) * Q[k, l]
  * 
  */
     __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_K); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 47, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = PyInt_FromSsize_t((__pyx_v_n - 1)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 47, __pyx_L1_error)
+    __pyx_t_2 = PyInt_FromSsize_t(__pyx_v_n); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 47, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_7 = PyTuple_New(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 47, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
@@ -2398,7 +2398,7 @@ static PyObject *__pyx_pf_9coranking_11_metrics_cy_2continuity(CYTHON_UNUSED PyO
 
       /* "src/_metrics_cy.pyx":48
  *     for k in range(K):
- *         for l in range(K, n-1):
+ *         for l in range(K, n):
  *             summation += w * (l+1 - K) * Q[k, l]             # <<<<<<<<<<<<<<
  * 
  *     return 1.0 - summation
@@ -2447,7 +2447,7 @@ static PyObject *__pyx_pf_9coranking_11_metrics_cy_2continuity(CYTHON_UNUSED PyO
       /* "src/_metrics_cy.pyx":47
  * 
  *     for k in range(K):
- *         for l in range(K, n-1):             # <<<<<<<<<<<<<<
+ *         for l in range(K, n):             # <<<<<<<<<<<<<<
  *             summation += w * (l+1 - K) * Q[k, l]
  * 
  */
