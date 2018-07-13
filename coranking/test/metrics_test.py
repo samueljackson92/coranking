@@ -41,7 +41,7 @@ def test_trustworthiness():
     Q = coranking_matrix(high_data, low_data)
     t = trustworthiness(Q.astype(np.int64), min_k=5, max_k=6)
 
-    nose.assert_almost_equal(t, 0.895, places=3)
+    nose.assert_almost_equal(t, 0.89, places=2)
 
 
 def test_trustworthiness_array():
@@ -59,7 +59,7 @@ def test_continuity():
     Q = coranking_matrix(high_data, low_data)
     c = continuity(Q, 5, 6)
 
-    nose.assert_almost_equal(c, 0.982, places=3)
+    nose.assert_almost_equal(c, 0.98, places=2)
 
     c2 = trustworthiness(Q, 5, 6)
     nose.assert_true(c, c2)
