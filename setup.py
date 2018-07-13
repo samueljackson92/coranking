@@ -44,7 +44,6 @@ config = {
     'install_requires': [
         'numpy',
         'scipy',
-        'scikit-learn'
     ],
     'ext_modules': ext_modules,
     'cmdclass': {'build_ext': BuildCorankingExtCommand},
