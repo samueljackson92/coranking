@@ -11,7 +11,7 @@ Lee, John A., and Michel Verleysen. "Quality assessment of dimensionality reduct
 Installation
 -------------
 
-This library depends on the scipy stack & scikit-learn:
+This library depends on:
 
  - numpy
  - scipy
