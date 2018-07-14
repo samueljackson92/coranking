@@ -15,7 +15,6 @@ This library depends on the scipy stack & scikit-learn:
 
  - numpy
  - scipy
- - scikit-learn
 
 With those dependacies installed you can install this library directly from the repo with the following:
 
