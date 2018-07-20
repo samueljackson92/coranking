@@ -1,6 +1,7 @@
 # Co-ranking
 
 [![Build Status](https://travis-ci.org/samueljackson92/coranking.svg?branch=master)](https://travis-ci.org/samueljackson92/coranking)
+[![Documentation Status](https://readthedocs.org/projects/coranking/badge/?version=latest)](https://coranking.readthedocs.io/en/latest/?badge=latest)
 
 Python implementation of a co-ranking matrix and various metrics derived from it.
 
