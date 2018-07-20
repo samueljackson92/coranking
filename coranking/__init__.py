@@ -6,6 +6,7 @@ except NameError:
 
 if not __CORANKING_SETUP__:
     from coranking._coranking import coranking_matrix
+    __all__ = ['coranking_matrix']
 
 __version__ = "0.1.1"
 
