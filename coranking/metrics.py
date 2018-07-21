@@ -1,4 +1,14 @@
-import coranking._metrics_cy as metrics_cy
+import os
+
+# Must mock the C module for read the docs as they have
+# no support for compiling C code
+on_rtd = os.environ.get('READTHEDOCS') == 'True'
+if on_rtd:
+    from unittest.mock import MagicMock
+    _metrics_cy = MagicMock()
+else:
+    import coranking._metrics_cy as metrics_cy
+
 import numpy as np
 
 

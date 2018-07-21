@@ -170,15 +170,3 @@ texinfo_documents = [
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {'https://docs.python.org/': None}
 
-
-# -- Mock out C extensions for rtfd -- ---------------------------------------
-
-from unittest.mock import MagicMock
-
-class Mock(MagicMock):
-    @classmethod
-    def __getattr__(cls, name):
-        return MagicMock()
-
-MOCK_MODULES = ['_metrics_cy']
-sys.modules.update((mod_name, Mock()) for mod_name in MOCK_MODULES)
