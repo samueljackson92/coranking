@@ -79,7 +79,7 @@ def LCMC(np.ndarray[np.int64_t, ndim=2] Q, Py_ssize_t K):
         The LCMC metric for the given K
     """
     cdef Py_ssize_t i, j
-    cdef Py_ssize_t n = Q.shape[0]
+    cdef Py_ssize_t n = Q.shape[0] + 1
     cdef double summation = 0.0
 
     for k in range(K):
